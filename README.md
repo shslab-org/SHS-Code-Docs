@@ -5,7 +5,7 @@ Version documented here: **4.0.0** — verified from `app/__init__.py:__version_
 `pyproject.toml:version = "4.0.0"`, and `python main.py --version` → `SHS Code v4.0.0`.
 
 > Source-first rule: every command, path, config key, and env var below was read from
-> the v4.0.0 source tree at commit `ee1c397` (skill-ranking patch, no version bump).
+> the v4.0.0 source tree at commit `3dad673` fix stack (prior audit `ee1c397`, no version bump).
 > Anything not verifiable is explicitly marked **UNVERIFIED**.
 
 ## What is SHS-Code?
@@ -65,14 +65,14 @@ Installed console scripts (`pyproject.toml [project.scripts]`, verified):
 [ARCHITECTURE.md](ARCHITECTURE.md) → [OPTIMIZATIONS.md](OPTIMIZATIONS.md) →
 [PERFORMANCE.md](PERFORMANCE.md)
 
-## Honest status (v4.0.0 final, commit ee1c397)
+## Honest status (v4.0.0 final, commit 3dad673 fix stack; prior audit ee1c397)
 
-- Full suite: **684 passed, 2 skipped** (`python -m pytest tests/ -q -o addopts="" -p no:cacheprovider`).
-- v4 slice: **31 passed** (`tests/v4/`).
-- Fixed during this audit: skill `get_relevant` stopword-tie ranking (commit `ee1c397`).
-- Known limits: semantic-cache `difflib` scan is O(store); cold index ~0.9–1.3 s
+- Full suite: **708 passed, 2 skipped** (`python -m pytest tests/ -q -o addopts="" -p no:cacheprovider`; prior `ee1c397`: 684 passed, 2 skipped).
+- v4 slice: **37 passed** (`tests/v4/`; prior: 31 passed).
+- Fixed during this audit: skill `get_relevant` stopword-tie ranking (commit `ee1c397`); plus fix stack to `3dad673` (entry `--help`, semantic-cache O(1), secrets auth, intel batch write, LLM failover, supervisor lifecycle).
+- Known limits: semantic-cache difflib now pruned + LRU (FIXED `19b915c`); cold index ~0.9–1.3 s
   (tree-size dependent, prefetch hides but does not remove); per-request LLM-path
-  failover is whole-run, not per-request. See [WEAKNESSES.md](WEAKNESSES.md),
+  failover PARTIAL-FIX (`a46a149`, exotic paths still manual `--continue`). See [WEAKNESSES.md](WEAKNESSES.md),
   [AUDIT.md](AUDIT.md), [PERFORMANCE.md](PERFORMANCE.md), [VERIFICATION.md](VERIFICATION.md).
 
 ## Map

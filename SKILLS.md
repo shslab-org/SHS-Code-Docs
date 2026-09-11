@@ -19,7 +19,7 @@ Markdown with front-matter (`name`, `description`, `tags`, `version`); engine
 ## Ranking fix during this audit (commit ee1c397, verified)
 Old `get_relevant` counted raw word overlap incl. stopwords (`a/with/write/…`) so every
 skill tied at 1 and the right skill was buried (`test_relevant_skill_selected_for_task` failed).
-Fix: stopword filter + name/tag-weighted scoring + name tie-break. Full suite now 684 passed.
+Fix: stopword filter + name/tag-weighted scoring + name tie-break. Full suite post-fix stack: 708 passed, 2 skipped (prior `ee1c397`: 684 passed).
 
 ## Create your first skill (beginner, verified API)
 ```bash

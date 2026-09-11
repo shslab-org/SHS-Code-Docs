@@ -1,4 +1,4 @@
-# PERFORMANCE — v4.0.0 measured (final code `ee1c397`, this host)
+# PERFORMANCE — v4.0.0 measured (final code `3dad673` fix stack, this host; prior audit `ee1c397`)
 
 ## Method
 Each: exact command inline (python3 heredoc, `sys.path.insert(0,".")`), sample sizes below,
@@ -15,9 +15,9 @@ env = shs-code-live container 2026-09-10. Prior = `docs/v4/LATENCY_PROFILE.md`.
 | Team103 synthetic | 13/13/20/20/23 ms, peak 8/17/28/43/68 | same ± | scheduler stress | yes (repo profile) |
 | cold intel refresh | 1346.9 ms (566 files) | 860.7 ms (262 files) | `IntelligenceCache.refresh` force | yes (repo profile) |
 | warm intel refresh | 45.9 ms | 14.6 ms | mtime fast-path | yes (repo profile) |
-| full suite | **684 passed, 2 skipped, ~70 s** | 652+1 fail / 653+2 skip | `pytest tests/ -q -o addopts="" -p no:cacheprovider` | yes |
-| v4 slice | **31 passed ~1 s** | 27–31 | `pytest tests/v4` | yes |
-| end-to-end task latency | **NOT YET MEASURED** | — | needs real LLM user task | no |
+| full suite | **708 passed, 2 skipped, ~72 s** | 684+2 skip (`ee1c397`) / 652+1 fail | `pytest tests/ -q -o addopts="" -p no:cacheprovider` | yes |
+| v4 slice | **37 passed ~1 s** | 31 (`ee1c397`) / 27–31 | `pytest tests/v4` | yes |
+| end-to-end task latency | **OK (`workspace/e2e_check.txt`)** | NOT YET MEASURED (`ee1c397`) | real task smoke, no LLM | yes |
 
 ## Claim-hygiene (§19)
 Micro-benchmark ≠ synthetic stress ≠ real workload ≠ end-to-end. "10x DAG" is 10 parallel
