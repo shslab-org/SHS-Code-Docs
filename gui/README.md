@@ -41,7 +41,7 @@ state.
 | Agent | [Agent](gui/AGENT.md) | chat, live streaming, activity feed, cancel |
 | Tasks | [Tasks](gui/TASKS.md) | task lifecycle + DAG visualization |
 | Team103 | [Team103](gui/TEAM103.md) | 103-worker execution runs |
-| Workspace | [Workspace](gui/WORKSPACE.md) | file tree + viewer |
+| Workspace | [Workspace](gui/WORKSPACE.md) | file tree + viewer + **diff-viewer (v4.2.0)** |
 | Terminal | [Terminal](gui/TERMINAL.md) | command execution |
 | Git | [Git](gui/GIT.md) | branch/commit/push/pull/stash/diff |
 | GitHub | [GitHub](gui/GITHUB.md) | PRs, issues, agent identity |
@@ -51,6 +51,11 @@ state.
 | Logs | [Logs](gui/LOGS.md) | live log tail |
 | Settings | [Settings](gui/SETTINGS.md) | config + model switching |
 | Help / Guide | [Help](gui/HELP.md) | plain-language guide + collapsible navigation |
+
+**New — [Visual Tour](gui/TOUR.md): every panel shown in real screenshots**
+(v4.2.0), captured from a live session — see the diff-viewer, the
+sliding navigation and the mobile drawer before you even start the
+server.
 
 ## Collapsible navigation (v4.1.0)
 

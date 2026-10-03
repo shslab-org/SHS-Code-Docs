@@ -1,5 +1,33 @@
 # CHANGELOG — docs repo + audit trail
 
+## Docs v2.2 (2026-10-03, SHS-Code v4.2.0)
+v4.2.0 documentation — existing docs preserved, new docs added:
+- `gui/TOUR.md` — **the visual tour: a docs-site page where every GUI
+  feature is shown in real screenshots** (12 images in `screenshots/`):
+  dashboard, agent chat, Files tab, the new diff-viewer (annotated
+  how-to-read-it table), staged mode, changes badge, hidden sidebar,
+  full-width diff reading, mobile hidden + drawer, help panel
+- `screenshots/` — 12 real PNG captures from a live v4.2.0 session
+- `MESSAGING.md` — all 12 messaging adapters now fully implemented
+  (Discord Gateway, Slack Socket Mode, Teams Bot Framework OAuth,
+  Google Chat service-account JWT + send-URL bug fix, Email IMAP
+  polling), env-var matrix, webhook routes, gateway architecture
+- `gui/WORKSPACE.md` — Files/Changes tabs, diff-viewer, three
+  comparison modes, server-side behavior, safety notes
+- `GITHUB_AGENT.md` — v4.2.0 "agent everywhere" attribution: author +
+  committer + co-author forced via `-c` overrides and
+  `GIT_AUTHOR_*`/`GIT_COMMITTER_*` env at CLI/server startup; opt-out
+  `SHSCODE_AGENT_IDENTITY=0`; the v4.0.1 bash-commit limitation is
+  resolved
+- `GUI_GUIDE.md` — workspace chapter rewritten for the two-tab
+  diff-viewer (mirrored from shs-code)
+- `gui/README.md` — Workspace row updated + Visual Tour callout
+- README — version 4.2.0, TOUR + MESSAGING links, honest status
+  (823 passed / 3 skipped, 826 collected)
+- SHS-Code v4.2.0 (pushed @ 2a0d2d8): diff-viewer, CI pytest workflow,
+  messaging completed, agent identity everywhere; commits on main now
+  authored by SHS-Code-Agent
+
 ## Docs v2.1 (2026-10-03, SHS-Code v4.1.0)
 v4.1.0 documentation — existing docs preserved, new docs added:
 - `GUI_GUIDE.md` — complete 15-chapter plain-language GUI manual for
