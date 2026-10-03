@@ -1,5 +1,20 @@
 # CHANGELOG — docs repo + audit trail
 
+## Docs v2.1 (2026-10-03, SHS-Code v4.1.0)
+v4.1.0 documentation — existing docs preserved, new docs added:
+- `GUI_GUIDE.md` — complete 15-chapter plain-language GUI manual for
+  non-programmers (mirrored from shs-code `docs/GUI_GUIDE.md`): layout,
+  nav slide/hide, first-task walkthrough, all 14 panels, honest finish
+  reasons, task statuses, Git/GitHub safety, data locations,
+  troubleshooting, FAQ, CLI↔GUI cheat sheet
+- `gui/HELP.md` — the new 14th panel (in-app Help / Guide) + the
+  collapsible navigation feature (three toggle paths, localStorage
+  persistence, mobile drawer mode)
+- `gui/README.md` — Help panel row + Collapsible navigation section
+- README — GUI_GUIDE links in run-modes table and doc map
+- SHS-Code v4.1.0 (pushed, 776 tests green): slide/hide sidebar,
+  Help panel, QA-panel badge fix (Python `True` leaked into JS)
+
 ## Docs v2.0 (2026-10-03, SHS-Code v4.0.1)
 Full v4.0.1 documentation pass — all existing docs preserved, new docs added:
 - `gui/` — 14 files: README index + Overview/Dashboard/Agent/Tasks/Team103/

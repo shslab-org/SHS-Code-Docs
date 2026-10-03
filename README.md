@@ -44,7 +44,7 @@ Zero-to-hero: [BEGINNER_GUIDE.md](BEGINNER_GUIDE.md)
 | Mode | Command (verified `--help`) | Doc |
 |---|---|---|
 | Single-agent CLI | `python main.py [prompt] [--model M] [--session ID] [--continue]` | [SINGLE_AGENT.md](SINGLE_AGENT.md) |
-| **GUI (v4.0.1)** | `shscode-server` → open `http://localhost:8765/gui` | [gui/README.md](gui/README.md) |
+| **GUI (v4.0.1)** | `shscode-server` → open `http://localhost:8765/gui` | [gui/README.md](gui/README.md) · full manual: [GUI_GUIDE.md](GUI_GUIDE.md) |
 | Server | `python run_server.py [--host 0.0.0.0] [--port 8765] [--reload]` | [USAGE.md](USAGE.md) |
 | Multi-agent | `python run_multi_agent.py [goal] [--mode build\|plan] [--session ID]` | [MULTI_AGENT.md](MULTI_AGENT.md) |
 | Team103 | CLI `/team103 <goal>` · server `POST /team103` · `from app.v4.wiring import run_team103` | [TEAM_103.md](TEAM_103.md) |
@@ -95,7 +95,8 @@ AUTONOMOUS · MULTI_AGENT · TEAM_103 · BROWSER · GIT · GITHUB · GITHUB_AGEN
 TASK_SYSTEM · STREAMING · WEBHOOKS · CRON · SSH · SANDBOX · TROUBLESHOOTING ·
 FAQ · SECURITY.
 GUI docs (v4.0.1): [gui/](gui/README.md) — Overview · Dashboard · Agent · Tasks ·
-Team103 · Workspace · Terminal · Git · GitHub · QA · Sessions · Memory · Logs · Settings.
+Team103 · Workspace · Terminal · Git · GitHub · QA · Sessions · Memory · Logs · Settings ·
+Help (v4.1.0). Full plain-language manual: [GUI_GUIDE.md](GUI_GUIDE.md).
 Maintainer docs: ARCHITECTURE · OPTIMIZATIONS · PERFORMANCE · AUDIT · WEAKNESSES ·
 VERIFICATION · CONTRIBUTING · DEVELOPMENT · CHANGELOG.
 Examples: `examples/{basic,coding,autonomous,multi-agent,team103,skills,mcp,providers,memory}/`.

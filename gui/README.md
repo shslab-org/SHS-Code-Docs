@@ -50,6 +50,16 @@ state.
 | Memory | [Memory](gui/MEMORY.md) | project/user/long-term memory |
 | Logs | [Logs](gui/LOGS.md) | live log tail |
 | Settings | [Settings](gui/SETTINGS.md) | config + model switching |
+| Help / Guide | [Help](gui/HELP.md) | plain-language guide + collapsible navigation |
+
+## Collapsible navigation (v4.1.0)
+
+The sidebar slides out of the way for full-width content — toggle with the
+**☰** top-bar button, the **☰ MENU** edge tab, or <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>B</kbd>.
+The preference persists in `localStorage`; below 820px the sidebar becomes an
+overlay drawer (closed by default, Esc/backdrop close, auto-close on panel pick).
+For the complete plain-language manual (no programming knowledge needed), see
+[GUI_GUIDE.md](../GUI_GUIDE.md).
 
 ## Event model
 
