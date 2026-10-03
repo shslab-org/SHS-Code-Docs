@@ -82,14 +82,14 @@ Installed console scripts (`pyproject.toml [project.scripts]`, verified):
   workflow** (Python 3.11+3.12 on every push/PR), **all messaging stubs
   completed** (Discord Gateway, Slack Socket Mode, Teams Bot Framework OAuth,
   Google Chat service-account JWT + send-URL bug fix, Email IMAP polling, plus
-  `/messaging/webhooks/*` routes), and the **SHS-Code-Agent identity enforced
+  `/messaging/webhooks/*` routes), and the **SHS-Agent identity enforced
   everywhere** — commit author + committer + co-author, CLI and GUI alike,
   including bash-tool commits via `GIT_AUTHOR_*`/`GIT_COMMITTER_*`.
 - Live-tested end-to-end against a real third-party provider (Agnes API,
   `agnes-3.0-flash`) from a fresh `pip install`: streaming, repo understanding,
   multi-file implementation, bug fixing, multi-task execution, failure recovery,
   full git workflow (branch → tests → commit → push), and a long-horizon build.
-- v4.0.1/v4.1.0 additions: token streaming, the full GUI, SHS-Code-Agent GitHub
+- v4.0.1/v4.1.0 additions: token streaming, the full GUI, SHS-Agent GitHub
   identity, task-lifecycle integrity (the `partial` state + strict DAG
   dependencies), final-answer-only response channel, Team103 production entry
   points, multi-socket WS fan-out, collapsible navigation, in-app Help panel.

@@ -2,7 +2,7 @@
 
 GitHub integration and the automation identity.
 
-- **Identity card** (`GET /github/status`): SHS-Code-Agent profile link,
+- **Identity card** (`GET /github/status`): SHS-Agent profile link,
   auth mode (`app` = GitHub App installation token, `pat` = personal
   access token), authenticated account, local branch state, and the commit
   trailer in use.

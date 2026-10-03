@@ -26,7 +26,7 @@ v4.2.0 documentation — existing docs preserved, new docs added:
   (824 passed / 3 skipped, 826 collected, CI green)
 - SHS-Code v4.2.0 (pushed @ 99be8a4, CI green): diff-viewer, CI pytest workflow,
   messaging completed, agent identity everywhere; commits on main now
-  authored by SHS-Code-Agent
+  authored by SHS-Agent
 
 ## Docs v2.1 (2026-10-03, SHS-Code v4.1.0)
 v4.1.0 documentation — existing docs preserved, new docs added:
@@ -47,7 +47,7 @@ v4.1.0 documentation — existing docs preserved, new docs added:
 Full v4.0.1 documentation pass — all existing docs preserved, new docs added:
 - `gui/` — 14 files: README index + Overview/Dashboard/Agent/Tasks/Team103/
   Workspace/Terminal/Git/GitHub/QA/Sessions/Memory/Logs/Settings
-- `GITHUB_AGENT.md` — SHS-Code-Agent identity, GitHub App tokens, trailer,
+- `GITHUB_AGENT.md` — SHS-Agent identity, GitHub App tokens, trailer,
   GitHubProvider facade, token hygiene
 - `TASK_SYSTEM.md` — finish reasons, the `partial` state, strict DAG
   dependencies, plan gate, response-channel cleanliness
@@ -62,7 +62,7 @@ SHS-Code v4.0.1 (verified live against the Agnes API, fresh installs):
 - Token streaming: UniversalClient SSE + on_delta plumbing, CLI live line,
   WS `llm_delta` frames for the GUI
 - Full GUI at `/gui` (13 panels, shared runtime, no duplicated logic)
-- SHS-Code-Agent GitHub identity + GitHubProvider + CLI `/github` +
+- SHS-Agent GitHub identity + GitHubProvider + CLI `/github` +
   server `/github/*` endpoints
 - Team103 production entry points (CLI `/team103`, `POST /team103`) +
   honest confidence/QA gates
@@ -90,6 +90,20 @@ async observability, dedup/locks, merger, cont QA, roles — see OPTIMIZATIONS.m
 
 ---
 
+## [4.4.0] — 2026-10-04
+
+### SHS-Agent identity migration
+
+- Dedicated GitHub identity moved to the personal user account
+  **https://github.com/SHS-Agent** (id 337454460). Commits authored by
+  SHS Code now use `SHS-Agent <337454460+SHS-Agent@users.noreply.github.com>`
+  and **count in repository Contributors lists** (user accounts are
+  credited; the old organization profile was not).
+- All docs migrated; `GITHUB_AGENT.md` gained a v4.4.0 section with the
+  live end-to-end verification table and the token note for PR
+  authorship.
+- Enforcement unchanged: git shim + forced env + `-c` overrides,
+  non-bypassable; human identities outside SHS Code untouched.
 ## [v4.3.0 docs] — 2026-10-04
 
 - **GITHUB_AGENT.md** — v4.3.0 section: mandatory non-bypassable

@@ -1,6 +1,6 @@
 # GUI — Git Panel
 
-Local repository operations with SHS-Code-Agent attribution.
+Local repository operations with SHS-Agent attribution.
 
 | Action | Endpoint | Notes |
 |---|---|---|
@@ -20,7 +20,7 @@ Every commit made through this panel (and the CLI `/github commit`) gets:
 ```
 Generated with SHS-Code
 
-Co-Authored-By: SHS-Code-Agent <SHS-Code-Agent@users.noreply.github.com>
+Co-Authored-By: SHS-Agent <337454460+SHS-Agent@users.noreply.github.com>
 ```
 
 Tokens used for pushing are injected into a one-shot URL and **never**
