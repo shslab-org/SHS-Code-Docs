@@ -1,4 +1,33 @@
-# CHANGELOG — docs repo + v4.0.0 audit trail
+# CHANGELOG — docs repo + audit trail
+
+## Docs v2.0 (2026-10-03, SHS-Code v4.0.1)
+Full v4.0.1 documentation pass — all existing docs preserved, new docs added:
+- `gui/` — 14 files: README index + Overview/Dashboard/Agent/Tasks/Team103/
+  Workspace/Terminal/Git/GitHub/QA/Sessions/Memory/Logs/Settings
+- `GITHUB_AGENT.md` — SHS-Code-Agent identity, GitHub App tokens, trailer,
+  GitHubProvider facade, token hygiene
+- `TASK_SYSTEM.md` — finish reasons, the `partial` state, strict DAG
+  dependencies, plan gate, response-channel cleanliness
+- `STREAMING.md` — SSE token streaming end-to-end
+- README: v4.0.1 status (755 passed), GUI row in run modes, updated
+  learning path + map + honest known-limits
+
+SHS-Code v4.0.1 (verified live against the Agnes API, fresh installs):
+- Task lifecycle integrity: finish-reason tracking, `partial` journal state,
+  plan-gated DONE patterns, strict DAG dependencies, no fake completion
+- Response channel: final answer only; interim/final session message kinds
+- Token streaming: UniversalClient SSE + on_delta plumbing, CLI live line,
+  WS `llm_delta` frames for the GUI
+- Full GUI at `/gui` (13 panels, shared runtime, no duplicated logic)
+- SHS-Code-Agent GitHub identity + GitHubProvider + CLI `/github` +
+  server `/github/*` endpoints
+- Team103 production entry points (CLI `/team103`, `POST /team103`) +
+  honest confidence/QA gates
+- Multi-socket WS fan-out, session continuation over REST, packaging fixes
+  (fastapi/uvicorn core; package-data for static+skills)
+- Live-testing bug fixes: tool-args always valid JSON; ENVIRONMENT
+  working-directory injection
+- Tests: 708 → 755 passed (+47 regression tests)
 
 ## Docs v1.1 (2026-09-11, SHS-Code `3dad673` fix stack; prior `ee1c397`)
 Surgical doc sync to final code: 708 passed / 37 v4 tests; `--help` entries, semantic-cache O(1), secrets auth, LLM failover partial-fix. Prior v1.0 below unchanged.
