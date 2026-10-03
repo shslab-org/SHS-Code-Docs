@@ -71,8 +71,12 @@ Installed console scripts (`pyproject.toml [project.scripts]`, verified):
 
 ## Honest status (v4.2.0)
 
-- Full suite: **823 passed, 3 skipped** (826 collected — 51 new v4.2.0 regression
-  tests on top of v4.1.0's 776).
+- Full suite: **824 passed, 3 skipped** (826 collected — 51 new v4.2.0
+  regression tests on top of v4.1.0's 776).
+- **CI green on GitHub Actions** (Tests + Pylint on Python 3.11/3.12,
+  commit `99be8a4`) — the first CI run caught two real environmental
+  sharp edges (user-namespace sandbox skips, stale-`__pycache__` in
+  rapid edit→rerun), both fixed with honest guards.
 - v4.2.0 additions: the GUI workspace **diff-viewer** (Files/Changes tabs,
   colorized unified diffs, Working-tree/Staged/vs-HEAD modes), the **pytest CI
   workflow** (Python 3.11+3.12 on every push/PR), **all messaging stubs

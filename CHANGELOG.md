@@ -23,8 +23,8 @@ v4.2.0 documentation — existing docs preserved, new docs added:
   diff-viewer (mirrored from shs-code)
 - `gui/README.md` — Workspace row updated + Visual Tour callout
 - README — version 4.2.0, TOUR + MESSAGING links, honest status
-  (823 passed / 3 skipped, 826 collected)
-- SHS-Code v4.2.0 (pushed @ 2a0d2d8): diff-viewer, CI pytest workflow,
+  (824 passed / 3 skipped, 826 collected, CI green)
+- SHS-Code v4.2.0 (pushed @ 99be8a4, CI green): diff-viewer, CI pytest workflow,
   messaging completed, agent identity everywhere; commits on main now
   authored by SHS-Code-Agent
 
