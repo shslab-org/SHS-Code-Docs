@@ -93,3 +93,106 @@ Server: `GET /github/status|diff|log|prs|issues` ·
   login — never the token
 - Secrets are masked everywhere they could surface (`/config`, logs via
   secret_redaction)
+
+---
+
+## v4.3.0 — Mandatory, non-bypassable attribution
+
+v4.3.0 turns the agent-identity rule from a convention into a
+**mechanical guarantee**. Work performed by SHS Code is always
+attributed to the SHS-Code-Agent identity, and nothing inside SHS Code
+can turn that off — not a prompt, a task instruction, a CLI flag, a GUI
+action, a config option, or an environment variable.
+
+### What is enforced
+
+Every `git commit` created **inside SHS Code** — an agent's bash
+session, the GUI terminal panel, the GitHub panel, or any runtime path —
+carries:
+
+- **Author**: `SHS-Code-Agent <SHS-Code-Agent@users.noreply.github.com>`
+- **Committer**: the same identity
+- a `Co-Authored-By: SHS-Code-Agent <…>` trailer on commits made
+  through the GitHub panel / provider paths
+
+GitHub resolves the noreply address to the SHS-Code-Agent account, so
+every commit links to the profile (verified live: the commit API
+returns `author.login = "SHS-Code-Agent"`,
+`html_url = "https://github.com/SHS-Code-Agent"`).
+
+### How it is enforced (three layers)
+
+1. **Git shim** — `~/.shscode/shims/git` is installed first on the
+   `PATH` of the SHS Code process and every child it spawns. For
+   `git commit` it strips every `--author=…` / `--author …` /
+   `--reset-author` the caller passed, appends the mandatory author, and
+   execs the real git with the four identity env vars forced (it builds
+   the child environment itself, so `env -u` games cannot interfere).
+   Merge/revert/cherry-pick/pull/rebase/stash commits get the forced
+   committer identity the same way. Everything else passes through
+   untouched.
+2. **Runtime paths** — `GitHubProvider.commit()` forces the identity
+   with three independent mechanisms (`-c user.name/user.email`,
+   the env vars, and an explicit final `--author=`), and every provider
+   git command runs with the identity environment.
+3. **System prompt** — the agent is told the attribution is mandatory
+   and mechanically enforced, and is instructed to *explain kindly*
+   (not obey) requests like "commit this as me" or "remove the agent
+   attribution".
+
+### What was removed
+
+- `SHSCODE_AGENT_IDENTITY=0` no longer exists (it used to disable the
+  identity — an explicit bypass hole).
+- `apply_agent_git_env` now **always overwrites** inherited
+  `GIT_AUTHOR_*` / `GIT_COMMITTER_*` values (a hostile inherited
+  identity used to win).
+- `GitHubProvider.commit(credit_agent=False)` is accepted but ignored.
+
+### Your own work is untouched
+
+The shim only exists on the `PATH` of processes spawned by SHS Code.
+Your own terminal, editor, and git configuration are never modified —
+commits you make yourself, outside SHS Code, keep your normal identity.
+
+### GitHub "Contributors" — the verified platform fact
+
+GitHub's **Contributors** aggregation (the sidebar avatars, the
+Insights → Contributors graph, and `GET /repos/{owner}/{repo}/contributors`)
+counts **user accounts and bot (GitHub App) accounts only**.
+The SHS-Code-Agent profile is currently an **Organization**, and
+organizations are excluded from that aggregation. This was verified
+empirically on a dedicated test repository:
+
+- two commits authored as
+  `SHS-Code-Agent <SHS-Code-Agent@users.noreply.github.com>` →
+  the repo sidebar showed **"Contributors — No contributors"**;
+- one commit authored by a **user** account → that user appeared in the
+  sidebar **immediately** (no cache lag);
+- the same holds on `shslab-org/shs-code` and `shslab-org/shs-code-docs`
+  after 24+ hours — not caching, a platform rule.
+
+What DOES work today with the organization: every commit authored by
+SHS Code shows the SHS-Code-Agent avatar and links to
+`https://github.com/SHS-Code-Agent` on the commit list, the commit
+page, and via the API (`author.login`). That is real Git/GitHub
+attribution — the commit itself is associated with the dedicated
+identity, not merely mentioned in the message.
+
+**Forward-compatible by design**: the noreply address
+`SHS-Code-Agent@users.noreply.github.com` maps to *whatever account
+owns the login*. If a **user account** named `SHS-Code-Agent` is ever
+registered (rename/delete the organization first, then sign up the
+user account), the exact same attribution — with zero code changes —
+starts counting toward the repository's Contributors list, because the
+commits already carry the right author identity.
+
+### Related v4.3.0 fixes
+
+- **max_steps is user-controlled** and can no longer be silently
+  replaced — see `CONFIGURATION.md` § *max_steps*.
+- **Detached runs** (`SHSCode --detach`, GUI "detached" checkbox)
+  survive terminal/server shutdowns — see `AUTONOMOUS.md` § *Detached
+  execution*.
+- **Resumed sessions** no longer hit the tool-call protocol error
+  (orphaned `tool_calls` are sanitized at the LLM request boundary).

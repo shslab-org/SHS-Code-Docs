@@ -68,3 +68,63 @@ Known providers (`openai anthropic google gemini mistral bedrock`) are NOT coerc
 `SHSCODE_ALLOWED_ORIGINS`, `SHSCODE_SSH_PORT`, `SHSCODE_SSH_HOST_KEY`,
 `SHSCODE_CIPHER_KEY`, `LLM_API_KEY`, `LLM_BASE_URL`, `LLM_MODEL`,
 `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`. Legacy `MANUSCLAW_*` mirrors `SHSCODE_*`.
+
+---
+
+## max_steps (v4.3.0) — you decide the step budget, the runtime respects it
+
+`max_steps` is the maximum number of steps the agent may take for one
+task. **It is a top-level setting** and it must sit **above every
+`[section]` header** in your config file:
+
+```toml
+# config.toml — TOP LEVEL (correct)
+max_steps     = 80     # your budget for a task
+workspace_dir = "workspace"
+
+[llm]
+provider = "universal"
+...
+```
+
+### The bug this release fixes
+
+The shipped example config used to place `max_steps` **inside the
+`[logging]` section** — in TOML, every key after a `[section]` header
+belongs to that section until the next header. The loader silently
+ignored the unknown key, so a configured `80` never took effect and the
+runtime kept the default `30`. v4.3.0 fixes this class of bug at the
+architecture level:
+
+- the loader performs **strict placement validation** — a top-level
+  setting found inside any section is a **hard error** that names the
+  key, the section, and the exact fix;
+- unknown keys only produce warnings;
+- `SHSCODE_CONFIG_PERMISSIVE=1` downgrades the hard error to a warning
+  for legacy files;
+- three further silent-replacement bugs were fixed (a hardcoded `30`
+  in the API run request, a hardcoded `30` in the conversation layer,
+  and the mode-scaling `max(5,…)` floor overwriting a configured 3).
+
+### Where you control it (highest priority first)
+
+| Surface | How | Scope |
+|---|---|---|
+| CLI | `SHSCode --max-steps 150 "<task>"` | this run |
+| GUI Agent panel | "Steps" number box | this run |
+| Env | `SHSCODE_MAX_STEPS=150` | until cleared |
+| GUI Settings | "Agent Step Budget" → Set as default | persisted (0600) |
+| Config file | `max_steps = 80` at the **top level** | all runs |
+
+Precedence: explicit per-run selection > `SHSCODE_MAX_STEPS` > profile
+config > home config > project `config.toml` > default (30).
+
+### Seeing what is actually in effect
+
+Every surface shows the **effective value and its source**, so the
+runtime can never silently disagree with what you configured:
+
+- CLI: `/config` → `max_steps: 80  (source: file config.toml)`
+- run-start log line: `… max_steps=80 (source: file config.toml)`
+- API/GUI: `GET /config` → `max_steps`, `max_steps_source`
+- `POST /config/max-steps {"value": 80}` (or `null` to clear)

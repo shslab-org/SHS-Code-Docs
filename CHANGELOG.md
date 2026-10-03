@@ -87,3 +87,21 @@ Initial standalone documentation repository. 35 files, all verified.
 Prefix/semantic cache, async DAG, streaming parser, speculative, prefetch, tiered/intelligent
 memory, context mgmt, model routing, plan cache, risk verify, recovery, browser pool,
 async observability, dedup/locks, merger, cont QA, roles — see OPTIMIZATIONS.md.
+
+---
+
+## [v4.3.0 docs] — 2026-10-04
+
+- **GITHUB_AGENT.md** — v4.3.0 section: mandatory non-bypassable
+  attribution (git shim, removed opt-outs), the verified GitHub
+  Contributors platform fact for organizations, and the
+  forward-compatible noreply-address path to full contributor
+  recognition.
+- **CONFIGURATION.md** — `max_steps` chapter: top-level placement, the
+  strict placement-validation error, all control surfaces (CLI flag,
+  GUI Steps box, Settings budget, env, config file), precedence, and
+  the effective-value transparency surfaces.
+- **AUTONOMOUS.md** — Detached execution: `--detach` / `--runs` /
+  `--attach`, registry + liveness, graceful SIGTERM interruption and
+  resume, plus the verified real-run behaviors.
+- **GUI_GUIDE.md** — the v4.3.0 GUI additions in plain language.

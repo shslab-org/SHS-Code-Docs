@@ -453,3 +453,32 @@ continue the session later or start a new one.
 
 *This guide ships with SHS Code (`docs/GUI_GUIDE.md`) and is mirrored in the
 documentation repository: <https://github.com/shslab-org/shs-code-docs>.*
+
+---
+
+## New in the GUI (v4.3.0)
+
+### "Steps" box (Agent panel)
+
+The number box next to the session row lets you decide **how many
+steps** the agent may take for your next task. Leave it empty to use
+your configured default (the Settings panel shows it). Whatever you
+type is what the runtime uses — nothing silently replaces your choice.
+
+### "detached" checkbox (Agent panel)
+
+Tick it before sending a task and the task runs as its **own background
+process**: it survives this page being closed, the server restarting,
+even the machine's shell sessions ending. You get the run id and log
+location immediately in the chat, and you can watch it later in the
+**Sessions panel → Detached Runs** table (live state + whether the
+process is still alive).
+
+### Agent Step Budget (Settings panel)
+
+A dedicated card for your **default step budget**: type a number (e.g.
+80) and press *Set as default* — it is saved (0600) and used by every
+new run that does not override it. *Use config-file value* removes the
+override again. The panel always shows the **effective** `max_steps`
+and **where it came from** (`max_steps_source`), so what you see is
+exactly what the runtime uses.

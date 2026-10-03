@@ -111,3 +111,12 @@ Full plain-language manual: [GUI_GUIDE.md](GUI_GUIDE.md).
 Maintainer docs: ARCHITECTURE · OPTIMIZATIONS · PERFORMANCE · AUDIT · WEAKNESSES ·
 VERIFICATION · CONTRIBUTING · DEVELOPMENT · CHANGELOG.
 Examples: `examples/{basic,coding,autonomous,multi-agent,team103,skills,mcp,providers,memory}/`.
+
+## v4.3.0 documentation
+
+- `GITHUB_AGENT.md` — mandatory, non-bypassable attribution + the
+  GitHub Contributors platform fact for organizations
+- `CONFIGURATION.md` — `max_steps`: user-controlled step budget
+- `AUTONOMOUS.md` — detached execution (`--detach`, `--runs`,
+  `--attach`) and graceful interruption/resume
+- `GUI_GUIDE.md` — Steps box, detached checkbox, step-budget settings
